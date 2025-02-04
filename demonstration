@@ -1,0 +1,52 @@
+#Virtual Mouse Using Hand Gestures
+This project demonstrates the use of hand gestures to control a virtual mouse on a computer.
+By leveraging computer vision techniques, it tracks hand movements and translates them into mouse actions, such as moving the cursor, clicking, and scrolling.
+The system allows users to interact with their computer in a touchless and intuitive way, offering potential applications in accessibility, gaming, and user interfaces.
+
+#Features:
+Cursor Control: Move the cursor by tracking hand gestures.
+Clicking: Perform left and right clicks using specific gestures.
+Scrolling: Use gestures to simulate scrolling up or down.
+Hands-Free Navigation: Navigate and interact with your system without using a physical mouse or touchpad.
+  
+#Technologies Used:
+Python
+OpenCV
+Mediapipe (for hand tracking)
+PyAutoGUI  
+(Any additional libraries/tools used) 
+
+#Setup:
+Clone this repository.
+Install dependencies using pip install -r requirements.txt.
+Run the script to start controlling the mouse with hand gestures.
+
+#How Hand Movement Controls the System
+  
+Hand Detection: The system uses MediaPipe to detect and track the hand landmarks in real-time through your webcam. 
+  It processes each frame and identifies key points on the hand (such as fingertips, wrist, and palm).
+
+Cursor Movement:
+
+The position of the index finger (landmark 8) is tracked to move the cursor.
+The get_position() function translates the position of the index finger (relative to the camera) to screen coordinates (mouse position).
+The movement is stabilized by dampening, so small hand movements won’t cause jerky cursor behavior.
+Gestures for Actions:
+
+Fist Gesture: Closing the hand into a fist will "grab" the mouse, allowing the user to drag the cursor. 
+  The system detects this gesture and simulates a mouse down action (holding the left button).
+  
+Pinch Gesture: When the thumb and index fingers come closer, a scrolling action is triggered:
+If the pinch movement is vertical, the system scrolls up or down.
+If the pinch is horizontal, the system scrolls horizontally.
+  
+V Gesture: Holding up the index and middle fingers in a "V" shape triggers the mouse click.
+Two Finger Closed Gesture: Bringing the thumb and index fingers together and closing them triggers a double-click.
+Multi-Hand Support:
+
+The system can track both left and right hands. Depending on your dominant hand (which can be set in the code), the right or left hand will control the mouse.
+Each hand can be used for different controls (e.g., left hand for movement, right hand for clicking).
+Stabilization: To ensure smooth control, the system uses a dampening technique: it reduces the sensitivity of the mouse movement when the hand is not moving significantly, avoiding erratic cursor jumps.
+
+  
+  
